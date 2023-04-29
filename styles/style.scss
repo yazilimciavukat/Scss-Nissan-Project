@@ -1,0 +1,249 @@
+@import 'variables';
+@import 'modules';
+
+// Responsive
+
+@mixin mobile{
+    @media (max-width:800px){
+        @content;
+    }
+}
+@mixin laptop{
+    @media (min-width:800px) and (max-width: 1400px) {
+        @content;
+    }
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img{
+    mix-blend-mode: darken;
+}
+body{
+    background-color: $bg-color;
+    font-family: $main-font;
+    overflow-x: hidden;
+ }
+
+ // Header
+ header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    img {
+      width: 100px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      a {
+        text-decoration: none;
+        color: $text-color;
+        &:hover {
+          color: crimson;
+          transition: all 0.5s;
+        }
+      }
+    }
+    #nav-left {
+      a {
+        padding: 0 20px;
+        border-right: 1px solid gray;
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+    #nav-right {
+      gap: 30px;
+      font-size: 15px;
+      @include mobile {
+        display: none;
+      }
+    }
+    .opener {
+      display: none;
+      position: absolute;
+      right: 0;
+      bottom: -125px;
+      background-color: rgb(220, 220, 220);
+      box-shadow: 2px 2px 10px;
+      flex-direction: column;
+      gap: 20px;
+      border-radius: 10px;
+      padding: 5px;
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+    .menu {
+      width: 20px;
+      display: none;
+      @include mobile {
+        display: block;
+      }
+      &:hover + .opener {
+        display: flex;
+      }
+    }
+  }
+ // reception area
+ .hero{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 100px;
+    background: linear-gradient(rgb(215, 215, 215) 40%, $bg-color 40%);
+    @include mobile{
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 40px;
+    }
+    @include laptop{
+        flex-direction: column;
+        align-items: center;
+        gap: 100px;
+    }
+ }
+ .slogan{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    max-width: 500px;
+    @include mobile{
+        gap: 20px;
+    }
+    h1{
+        @extend %heading;
+        font-size: 40px;
+        @include mobile{
+            text-align: center
+        }
+        span{
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+    }
+    p{
+        @extend %p;
+    }
+    img{
+        width: 200px;
+        mix-blend-mode: darken;
+    }
+    h2{
+        @extend %heading;
+    }
+    button{
+        @extend %button;
+        background-color: crimson;
+        &:hover{
+            background-color: rgb(168, 16, 46);
+            transition: all 0.4s;
+        }
+    }
+ }
+ .images{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    &-banner{
+        max-width: 800px;
+        @include laptop {
+            max-width: 500px;
+        }
+    }
+    &-track{
+        max-width: 400px;
+    }
+    p{
+        max-width: 500px;
+        text-align: center;
+    }
+ }
+
+ //interior design
+ #interior{
+   @extend  %design;
+   background-image:radial-gradient(rgba(0, 0, 0, 0.5), black), url("/images/interior.jpeg");
+ }
+
+ #exterior{
+    @extend %design;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.3), black),
+    url('/images/exterior-4.jpeg');
+    p{
+        font-size: 17px;
+        @include mobile{
+            font-size: 15px;
+        }
+    }
+ }
+
+ //cars
+ #cars-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+
+    .cars{
+        display: flex;
+        @include mobile{
+            flex-direction: column;
+        }
+        img{
+            width: 300px;
+        }
+        h3{
+            text-align: center
+        }
+    }
+    button{
+        @extend %button;
+        background-color: aqua;
+        margin-top: 50px;
+        &:hover{
+            background-color: rgb(0, 180, 180);
+        }
+    }
+ }
+
+ //footer
+ footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    padding: 50px;
+    @include mobile{
+        flex-direction: column;
+        gap: 40px;
+    }
+    img{
+        width: 60px;
+        height: 90px;
+        mix-blend-mode: unset;
+    }
+    .footer-links{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        @include mobile{
+            align-items: center
+        }
+        h2{
+            @extend %heading;
+            color: white;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+        }
+    }
+ }
